@@ -6,64 +6,121 @@
     <title>Image Gallery</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
+
   <body>
     <header class="site-header">
       <h1>Image Gallery</h1>
-      <p class="lead">Add image files to the `images/` folder and list them in `images/images.json`.</p>
+      <p class="lead">Add image files to the <code>images/</code> folder and edit <code>images/images.json</code>.</p>
     </header>
 
     <main>
-      <section id="controls" class="controls">
-        <p>Tip: To host local images, copy them into the `images/` folder and add their filenames to `images/images.json` (see `images/README.md`).</p>
+
+      <!-- Search Bar -->
+      <section class="search-section">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search images..."
+          aria-label="Search images"
+        />
       </section>
 
-      <section id="gallery" class="gallery" aria-live="polite">
-        <!-- Images will be injected here -->
-      </section>
+      <section id="gallery" class="gallery" aria-live="polite"></section>
     </main>
 
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox hidden">
+      <span id="lightboxClose">&times;</span>
+      <img id="lightboxImg" src="" alt="" />
+      <p id="lightboxDesc"></p>
+    </div>
+
     <footer class="site-footer">
-      <p>Simple static gallery — images are served from the `images/` folder.</p>
+      <p>Static gallery with lightbox, search, and animations.</p>
     </footer>
 
     <script>
-      // Load image list from images/images.json and render into the gallery
-      (function(){
-        const gallery = document.getElementById('gallery');
-        fetch('images/images.json')
-          .then(res => {
-            if (!res.ok) throw new Error('Could not fetch images/images.json');
-            return res.json();
+      (function () {
+        const gallery = document.getElementById("gallery");
+        const searchInput = document.getElementById("searchInput");
+
+        let images = []; // Will hold all image data
+
+        // Lightbox elements
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightboxImg");
+        const lightboxDesc = document.getElementById("lightboxDesc");
+        const lightboxClose = document.getElementById("lightboxClose");
+
+        // Fetch JSON and render gallery
+        fetch("images/images.json")
+          .then((res) => res.json())
+          .then((list) => {
+            images = list;
+            renderGallery(list);
           })
-          .then(list => {
-            if (!Array.isArray(list) || list.length === 0) {
-              gallery.innerHTML = '<div class="empty">No images yet. Place files into `images/` and update `images/images.json`.</div>';
-              return;
-            }
-
-            list.forEach(item => {
-              const src = item.startsWith('http') ? item : `images/${item}`;
-              const link = document.createElement('a');
-              link.href = src;
-              link.target = '_blank';
-              link.rel = 'noopener noreferrer';
-
-              const img = document.createElement('img');
-              img.src = src;
-              img.alt = '';
-              img.loading = 'lazy';
-              link.appendChild(img);
-
-              const card = document.createElement('div');
-              card.className = 'card';
-              card.appendChild(link);
-              gallery.appendChild(card);
-            });
-          })
-          .catch(err => {
-            gallery.innerHTML = '<div class="empty">Unable to load images: ' + String(err) + '</div>';
+          .catch((err) => {
+            gallery.innerHTML = `<div class="empty">Unable to load images: ${err}</div>`;
           });
+
+        // Render gallery items
+        function renderGallery(list) {
+          gallery.innerHTML = "";
+
+          list.forEach((item, i) => {
+            const src = item.file.startsWith("http")
+              ? item.file
+              : `images/${item.file}`;
+            const description = item.description || "";
+
+            const card = document.createElement("div");
+            card.className = "card fade-in";
+
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = description;
+            img.loading = "lazy";
+            img.className = "gallery-img";
+
+            // Lightbox click
+            img.addEventListener("click", () => openLightbox(src, description));
+
+            const caption = document.createElement("p");
+            caption.className = "description";
+            caption.textContent = description;
+
+            card.appendChild(img);
+            card.appendChild(caption);
+            gallery.appendChild(card);
+          });
+        }
+
+        // Search functionality
+        searchInput.addEventListener("input", () => {
+          const query = searchInput.value.toLowerCase();
+          const filtered = images.filter((item) => {
+            return (
+              item.file.toLowerCase().includes(query) ||
+              (item.description || "").toLowerCase().includes(query)
+            );
+          });
+          renderGallery(filtered);
+        });
+
+        // Lightbox open
+        function openLightbox(src, description) {
+          lightboxImg.src = src;
+          lightboxDesc.textContent = description;
+          lightbox.classList.remove("hidden");
+        }
+
+        // Close lightbox
+        lightboxClose.onclick = () => lightbox.classList.add("hidden");
+        lightbox.onclick = (e) => {
+          if (e.target === lightbox) lightbox.classList.add("hidden");
+        };
       })();
     </script>
+
   </body>
 </html>
