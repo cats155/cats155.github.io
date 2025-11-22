@@ -15,30 +15,66 @@
 
 <header class="hero">
   <h1>LDA 22 – RJTT</h1>
-  <p>Localizer-type directional aid approach for Runway 22 at Tokyo Haneda Airport.</p>
+  <p>This approach is terrain-intensive and requires precise navigation. Follow published altitudes and course guidance carefully.</p>
 </header>
 
 <main class="section">
   <h2>Overview</h2>
   <p>
-    This approach is categorized as difficult due to terrain and high traffic.
-    Pilots must carefully follow the published altitudes and course guidance.
+    The LDA 22 approach at RJTT is a Localizer-type Directional Aid approach. It is classified as difficult due to terrain and high traffic. This page includes charts, approach notes, and visual references.
   </p>
 
-  <h2>Charts</h2>
+  <h2>Charts & Images</h2>
   <div class="gallery">
+    <!-- First image -->
     <div class="card fade-in">
-      <img src="../images/lda22_rjtt_1.png" alt="LDA 22 Chart" class="gallery-img" onclick="openLightbox('../images/lda22_rjtt_1.png', 'LDA 22 Chart')">
-      <p class="description">LDA 22 – Initial Approach Fix</p>
+      <img src="../images/lda22_rjtt_1.png" alt="LDA 22 Chart 1" class="gallery-img"
+           onclick="openLightbox('../images/lda22_rjtt_1.png', 'LDA 22 – Initial Approach Fix')">
+      <p class="description">Initial Approach Fix chart for LDA 22</p>
+    </div>
+
+    <!-- Second image -->
+    <div class="card fade-in">
+      <img src="../images/lda22_rjtt_2.png" alt="LDA 22 Chart 2" class="gallery-img"
+           onclick="openLightbox('../images/lda22_rjtt_2.png', 'LDA 22 – Final Approach Fix')">
+      <p class="description">Final Approach Fix chart for LDA 22</p>
     </div>
   </div>
+
+  <h2>Notes</h2>
+  <p>
+    Pilots should be aware of the surrounding high terrain and carefully monitor their descent rates. Approach charts and landing data must be followed precisely. This approach is a great example for studying complex terrain navigation under instrument conditions.
+  </p>
 </main>
 
 <footer class="site-footer">
   <p>For educational and enthusiast use — not for real-world navigation.</p>
 </footer>
 
-<!-- Optional: reuse your lightbox JS -->
-<script src="../assets/js/lightbox.js"></script>
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox hidden">
+  <span id="lightboxClose">&times;</span>
+  <img id="lightboxImg" alt="">
+  <p id="lightboxDesc"></p>
+</div>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxDesc = document.getElementById("lightboxDesc");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  function openLightbox(src, desc) {
+    lightboxImg.src = src;
+    lightboxDesc.textContent = desc;
+    lightbox.classList.remove("hidden");
+  }
+
+  lightboxClose.onclick = () => lightbox.classList.add("hidden");
+  lightbox.onclick = e => {
+    if (e.target === lightbox) lightbox.classList.add("hidden");
+  };
+</script>
+
 </body>
 </html>
