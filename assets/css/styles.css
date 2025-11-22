@@ -63,4 +63,177 @@ body::before {
 
 /* Search bar */
 .search-section {
-  text-
+  text-align: center;
+  padding: 1rem;
+}
+
+#searchInput {
+  width: 80%;
+  max-width: 450px;
+  padding: 0.7rem;
+  border: 1px solid #c8c8c8;
+  background: rgba(255,255,255,0.75);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: 0.25s ease;
+}
+
+#searchInput:focus {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 8px rgba(177,177,177,0.5);
+  outline: none;
+}
+
+/* Gallery grid */
+.gallery {
+  padding: 2rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(170deg, #ffffff, #f0ebe7, #ffffff);
+  border-radius: 14px;
+  padding-bottom: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.22);
+}
+
+/* Images */
+.gallery-img {
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.gallery-img:hover {
+  transform: scale(1.04);
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Descriptions */
+.description {
+  color: #5b5652;
+  padding: 0.7rem;
+  font-size: 0.96rem;
+  font-style: italic;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 75vh;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+#lightboxDesc {
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Georgia", serif;
+}
+
+#lightboxClose {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.8rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+#lightboxClose:hover {
+  transform: scale(1.15);
+}
+
+/* Directory List Styles */
+.directory-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.directory-list li {
+  background: linear-gradient(170deg, #ffffff, #f0ebe7, #ffffff);
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.directory-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.directory-list a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #0c1b32;
+  font-size: 1.1rem;
+}
+
+.directory-list a:hover {
+  text-decoration: underline;
+}
+
+.directory-list .quality {
+  display: block;
+  font-size: 0.9rem;
+  color: #5b5652;
+  font-style: italic;
+}
+
+/* Thumbnails for directory entries */
+.directory-list img {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
