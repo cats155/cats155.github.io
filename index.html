@@ -1,126 +1,119 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Image Gallery</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
 
-  <body>
-    <header class="site-header">
-      <h1>Image Gallery</h1>
-      <p class="lead">Add image files to the <code>images/</code> folder and edit <code>images/images.json</code>.</p>
-    </header>
+<body>
+  <header class="site-header">
+    <h1>Image Gallery</h1>
+    <p class="lead">Images are loaded from <code>images/images.json</code>.</p>
+  </header>
 
-    <main>
+  <main>
 
-      <!-- Search Bar -->
-      <section class="search-section">
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Search images..."
-          aria-label="Search images"
-        />
-      </section>
+    <!-- Search -->
+    <section class="search-section">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search images..."
+        aria-label="Search images"
+      />
+    </section>
 
-      <section id="gallery" class="gallery" aria-live="polite"></section>
-    </main>
+    <!-- Gallery -->
+    <section id="gallery" class="gallery"></section>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox hidden">
-      <span id="lightboxClose">&times;</span>
-      <img id="lightboxImg" src="" alt="" />
-      <p id="lightboxDesc"></p>
-    </div>
+  </main>
 
-    <footer class="site-footer">
-      <p>Static gallery with lightbox, search, and animations.</p>
-    </footer>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox hidden">
+    <span id="lightboxClose">&times;</span>
+    <img id="lightboxImg" alt="">
+    <p id="lightboxDesc"></p>
+  </div>
 
-    <script>
-      (function () {
-        const gallery = document.getElementById("gallery");
-        const searchInput = document.getElementById("searchInput");
+  <footer class="site-footer">
+    <p>Static gallery with search + lightbox + animations.</p>
+  </footer>
 
-        let images = []; // Will hold all image data
+  <script>
+    const gallery = document.getElementById("gallery");
+    const searchInput = document.getElementById("searchInput");
 
-        // Lightbox elements
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImg = document.getElementById("lightboxImg");
-        const lightboxDesc = document.getElementById("lightboxDesc");
-        const lightboxClose = document.getElementById("lightboxClose");
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxDesc = document.getElementById("lightboxDesc");
+    const lightboxClose = document.getElementById("lightboxClose");
 
-        // Fetch JSON and render gallery
-        fetch("images/images.json")
-          .then((res) => res.json())
-          .then((list) => {
-            images = list;
-            renderGallery(list);
-          })
-          .catch((err) => {
-            gallery.innerHTML = `<div class="empty">Unable to load images: ${err}</div>`;
-          });
+    let images = [];
 
-        // Render gallery items
-        function renderGallery(list) {
-          gallery.innerHTML = "";
+    // Load JSON
+    fetch("images/images.json")
+      .then(res => res.json())
+      .then(data => {
+        images = data;
+        renderGallery(images);
+      })
+      .catch(err => {
+        gallery.innerHTML = `<div class="empty">Error loading images: ${err}</div>`;
+      });
 
-          list.forEach((item, i) => {
-            const src = item.file.startsWith("http")
-              ? item.file
-              : `images/${item.file}`;
-            const description = item.description || "";
+    // Render Gallery
+    function renderGallery(list) {
+      gallery.innerHTML = "";
 
-            const card = document.createElement("div");
-            card.className = "card fade-in";
+      list.forEach(item => {
+        const src = `images/${item.file}`;
+        const description = item.description || "";
 
-            const img = document.createElement("img");
-            img.src = src;
-            img.alt = description;
-            img.loading = "lazy";
-            img.className = "gallery-img";
+        const card = document.createElement("div");
+        card.className = "card fade-in";
 
-            // Lightbox click
-            img.addEventListener("click", () => openLightbox(src, description));
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = description;
+        img.className = "gallery-img";
+        img.loading = "lazy";
+        img.onclick = () => openLightbox(src, description);
 
-            const caption = document.createElement("p");
-            caption.className = "description";
-            caption.textContent = description;
+        const caption = document.createElement("p");
+        caption.className = "description";
+        caption.textContent = description;
 
-            card.appendChild(img);
-            card.appendChild(caption);
-            gallery.appendChild(card);
-          });
-        }
+        card.appendChild(img);
+        card.appendChild(caption);
+        gallery.appendChild(card);
+      });
+    }
 
-        // Search functionality
-        searchInput.addEventListener("input", () => {
-          const query = searchInput.value.toLowerCase();
-          const filtered = images.filter((item) => {
-            return (
-              item.file.toLowerCase().includes(query) ||
-              (item.description || "").toLowerCase().includes(query)
-            );
-          });
-          renderGallery(filtered);
-        });
+    // Search
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase();
+      const filtered = images.filter(item =>
+        item.file.toLowerCase().includes(q) ||
+        (item.description || "").toLowerCase().includes(q)
+      );
+      renderGallery(filtered);
+    });
 
-        // Lightbox open
-        function openLightbox(src, description) {
-          lightboxImg.src = src;
-          lightboxDesc.textContent = description;
-          lightbox.classList.remove("hidden");
-        }
+    // Lightbox functions
+    function openLightbox(src, desc) {
+      lightboxImg.src = src;
+      lightboxDesc.textContent = desc;
+      lightbox.classList.remove("hidden");
+    }
 
-        // Close lightbox
-        lightboxClose.onclick = () => lightbox.classList.add("hidden");
-        lightbox.onclick = (e) => {
-          if (e.target === lightbox) lightbox.classList.add("hidden");
-        };
-      })();
-    </script>
+    lightboxClose.onclick = () => lightbox.classList.add("hidden");
+    lightbox.onclick = e => {
+      if (e.target === lightbox) lightbox.classList.add("hidden");
+    };
+  </script>
 
-  </body>
+</body>
 </html>
