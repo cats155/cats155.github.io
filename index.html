@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Image Gallery</h1>
+      <p class="lead">Add image files to the `images/` folder and list them in `images/images.json`.</p>
+    </header>
+
+    <main>
+      <section id="controls" class="controls">
+        <p>Tip: To host local images, copy them into the `images/` folder and add their filenames to `images/images.json` (see `images/README.md`).</p>
+      </section>
+
+      <section id="gallery" class="gallery" aria-live="polite">
+        <!-- Images will be injected here -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Simple static gallery — images are served from the `images/` folder.</p>
+    </footer>
+
+    <script>
+      // Load image list from images/images.json and render into the gallery
+      (function(){
+        const gallery = document.getElementById('gallery');
+        fetch('images/images.json')
+          .then(res => {
+            if (!res.ok) throw new Error('Could not fetch images/images.json');
+            return res.json();
+          })
+          .then(list => {
+            if (!Array.isArray(list) || list.length === 0) {
+              gallery.innerHTML = '<div class="empty">No images yet. Place files into `images/` and update `images/images.json`.</div>';
+              return;
+            }
+
+            list.forEach(item => {
+              const src = item.startsWith('http') ? item : `images/${item}`;
+              const link = document.createElement('a');
+              link.href = src;
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+
+              const img = document.createElement('img');
+              img.src = src;
+              img.alt = '';
+              img.loading = 'lazy';
+              link.appendChild(img);
+
+              const card = document.createElement('div');
+              card.className = 'card';
+              card.appendChild(link);
+              gallery.appendChild(card);
+            });
+          })
+          .catch(err => {
+            gallery.innerHTML = '<div class="empty">Unable to load images: ' + String(err) + '</div>';
+          });
+      })();
+    </script>
+  </body>
+</html>
