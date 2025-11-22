@@ -2,79 +2,75 @@ body {
   margin: 0;
   background: #f5f5f5;
   font-family: Arial, sans-serif;
-  color: #333;
 }
 
-/* Header & Footer */
+/* Header + footer */
 .site-header, .site-footer {
   background: #222;
-  color: #fff;
-  padding: 1.5rem;
+  color: white;
   text-align: center;
+  padding: 1.5rem;
 }
 
-/* Search Bar */
+/* Search bar */
 .search-section {
-  padding: 1rem;
   text-align: center;
+  padding: 1rem;
 }
 
 #searchInput {
   width: 80%;
-  max-width: 500px;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
+  max-width: 450px;
+  padding: 0.7rem;
   border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 1rem;
-  outline: none;
-  transition: box-shadow 0.2s ease;
 }
 
-#searchInput:focus {
-  box-shadow: 0 0 4px rgba(0, 140, 255, 0.6);
-}
-
-/* Gallery Grid */
+/* Gallery grid */
 .gallery {
   padding: 2rem;
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 /* Cards */
 .card {
   background: white;
+  border-radius: 10px;
   padding-bottom: 1rem;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   text-align: center;
-  transform: translateY(5px);
-  animation: fadeIn 0.5s ease forwards;
+  overflow: hidden;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Image hover zoom */
 .gallery-img {
   width: 100%;
-  transition: transform 0.3s ease;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .gallery-img:hover {
   transform: scale(1.05);
 }
 
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Descriptions */
 .description {
-  color: #666;
-  font-size: 0.9rem;
-  padding: 0 1rem;
+  color: #555;
+  padding: 0.6rem;
+  font-size: 0.95rem;
 }
 
 /* Lightbox */
@@ -86,35 +82,30 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
   z-index: 9999;
 }
 
-.lightbox.hidden {
+.hidden {
   display: none;
 }
 
 .lightbox img {
   max-width: 90%;
   max-height: 75vh;
-  border-radius: 6px;
-  box-shadow: 0 0 10px black;
+  border-radius: 8px;
   margin-bottom: 1rem;
 }
 
 #lightboxDesc {
   color: #fff;
-  font-size: 1.1rem;
-  max-width: 80%;
-  text-align: center;
+  font-size: 1.2rem;
 }
 
 #lightboxClose {
   position: absolute;
   top: 20px;
   right: 30px;
-  font-size: 2.5rem;
-  color: #fff;
+  font-size: 2.8rem;
   cursor: pointer;
-  font-weight: bold;
+  color: white;
 }
