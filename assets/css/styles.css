@@ -18,6 +18,37 @@ body::before {
   z-index: -1;
 }
 
+/* --- Top Navigation Bar --- */
+.navbar {
+  background: linear-gradient(135deg, #e7e3df, #d2d1c9);
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: "Georgia", serif;
+}
+
+.navbar a {
+  color: #4a4a4a;
+  text-decoration: none;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: 0.25s ease;
+}
+
+.navbar a:hover {
+  background: rgba(255,255,255,0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+}
+
 /* Header + Footer */
 .site-header,
 .site-footer {
@@ -32,3 +63,4 @@ body::before {
 
 /* Search bar */
 .search-section {
+  text-
