@@ -3,14 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Image Gallery</title>
+  <title>Approach Gallery</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <style>
+    /* Match homepage hero styling */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(180deg, #0c1b32, #112a4a);
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 750px;
+      margin: 0 auto;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .search-section {
+      padding-top: 2rem;
+    }
+  </style>
+
 </head>
 
 <body>
-  <header class="site-header">
-    <h1>Image Gallery</h1>
-    <p class="lead">Images are loaded from <code>images/images.json</code>.</p>
+
+  <!-- Hero replaces original header -->
+  <header class="hero">
+    <h1>Approach Procedure Gallery</h1>
+    <p>
+      Explore a curated collection of unique instrument approach procedures from around the world.
+      Search, browse, zoom in, and study each approach plate in detail.
+    </p>
   </header>
 
   <main>
@@ -20,7 +55,7 @@
       <input 
         type="text" 
         id="searchInput" 
-        placeholder="Search images..."
+        placeholder="Search approaches..."
         aria-label="Search images"
       />
     </section>
@@ -38,7 +73,7 @@
   </div>
 
   <footer class="site-footer">
-    <p>Static gallery with search + lightbox + animations.</p>
+    <p>For educational and enthusiast use — not for real-world navigation.</p>
   </footer>
 
   <script>
