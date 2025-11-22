@@ -5,62 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Instrument Approach Collection</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* Homepage-specific enhancements */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(180deg, #0c1b32, #112a4a);
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background: #fff;
+      color: #0c1b32;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .cta-button:hover {
+      background: #dce0e8;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .feature-box {
+      border: 1px solid #ddd;
+      padding: 1.5rem;
+      border-radius: 6px;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+
+    .feature-box:hover {
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
+<header class="hero">
   <h1>Instrument Approach Collection</h1>
-  <p class="lead">A curated archive of interesting IFR procedures.</p>
+  <p>
+    A curated collection of fascinating, unusual, and challenging instrument approach
+    procedures from around the world — visualized, annotated, and ready to explore.
+  </p>
+  <a class="cta-button" href="gallery.html">View Approach Gallery</a>
 </header>
 
 <main>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Where aviation creativity meets terrain and design</h2>
+  <section class="section">
+    <h2>Purpose</h2>
     <p>
-      Explore visualized approach procedures that stand out due to terrain,
-      airspace restrictions, unconventional routing, or just pure aviation storytelling.
+      Aviation is full of standard procedures — but every now and then, a published
+      approach stands out. Whether due to terrain, airspace, creativity, or history,
+      some instrument procedures simply have character.
     </p>
-
-    <a class="cta-button" href="gallery.html">View the Procedure Gallery</a>
-  </section>
-
-  <!-- Purpose -->
-  <section class="content-section">
-    <h3>Why This Exists</h3>
     <p>
-      Standard instrument procedures are beautifully precise — but some go
-      above and beyond. This project shares the approaches that make pilots
-      raise their eyebrows, grin, or say, “Wait… really?”
+      This project exists to document and share them in one place, complete with
+      visual references and background notes.
     </p>
   </section>
 
-  <!-- Features -->
-  <section class="content-section">
-    <h3>What You'll Discover</h3>
-
+  <section class="section">
+    <h2>What You'll Find</h2>
     <div class="feature-grid">
 
       <div class="feature-box">
-        <h4>Mountain Navigation</h4>
-        <p>Procedures weaving between terrain features with precision and drama.</p>
+        <h3>Complex Terrain</h3>
+        <p>
+          Procedures that carve between mountains, cliffs, and ridges in a way that
+          challenges both pilots and designers.
+        </p>
       </div>
 
       <div class="feature-box">
-        <h4>Clever Engineering</h4>
-        <p>Routes born from creative use of nav aids, altitudes and geometry.</p>
+        <h3>Historic Approaches</h3>
+        <p>
+          Famous or infamous arrivals that have earned a place in aviation lore.
+        </p>
       </div>
 
       <div class="feature-box">
-        <h4>Historic Approaches</h4>
-        <p>Famous or infamous arrivals that shaped how pilots think and fly.</p>
+        <h3>Creative Design</h3>
+        <p>
+          Approaches that make unorthodox use of navaids, clever altitude planning,
+          or unusual route structure.
+        </p>
       </div>
 
       <div class="feature-box">
-        <h4>Worldwide Examples</h4>
-        <p>From remote strips to dense metropolitan airspace.</p>
+        <h3>Global Collection</h3>
+        <p>
+          Procedures from all over the world, from massive hubs to airstrips tucked
+          in the wilderness.
+        </p>
       </div>
 
     </div>
@@ -68,8 +149,8 @@
 
 </main>
 
-<footer class="site-footer">
-  <p>Not for real-world navigation. Created for educational and enthusiast enjoyment.</p>
+<footer>
+  <p>Created for educational and enthusiast purposes — not for flight use.</p>
 </footer>
 
 </body>
