@@ -1,1 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LDA 22 – RJTT</title>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
 
+<nav class="navbar">
+  <a href="../index.html">Home</a>
+  <a href="../directory.html">Directory</a>
+</nav>
+
+<header class="hero">
+  <h1>LDA 22 – RJTT</h1>
+  <p>Wack would be the one word I would use to discribe this approach. Consider flying this hard IFR, breaking out at minnimums and you have to look across the cabin out the right window to look for the airport whilst still flying strait ahead..</p>
+</header>
+
+<main class="section">
+  <h2>Overview</h2>
+  <p>
+    BIIS RNP C. This page includes charts, approach notes, and visual references.
+  </p>
+
+  <h2>Charts & Images</h2>
+  <div class="gallery">
+    <!-- First image -->
+    <div class="card fade-in">
+      <img src="../images/RJTT_Approach_LDA_Z_22.png" alt="LDA 22 Chart 1" class="gallery-img"
+           onclick="openLightbox('RJTT_Approach_LDA_Z_22.png', 'LDA 22 – Initial Approach Fix')">
+      <p class="description">Initial Approach Fix chart for LDA 22</p>
+    </div>
+
+    <!-- Second image -->
+    <div class="card fade-in">
+      <img src="../images/BIIS_Approach_RNP_C.png" alt="LDA 22 Chart 2" class="gallery-img"
+           onclick="openLightbox('BIIS_Approach_RNP_C.png', 'RNP C')">
+      <p class="description">RNP C</p>
+    </div>
+  </div>
+
+  <h2>Notes</h2>
+  <p>
+   Looks cold...  </p>
+</main>
+
+<footer class="site-footer">
+  <p>For educational and enthusiast use — not for real-world navigation.</p>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox hidden">
+  <span id="lightboxClose">&times;</span>
+  <img id="lightboxImg" alt="">
+  <p id="lightboxDesc"></p>
+</div>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxDesc = document.getElementById("lightboxDesc");
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  function openLightbox(src, desc) {
+    lightboxImg.src = src;
+    lightboxDesc.textContent = desc;
+    lightbox.classList.remove("hidden");
+  }
+
+  lightboxClose.onclick = () => lightbox.classList.add("hidden");
+  lightbox.onclick = e => {
+    if (e.target === lightbox) lightbox.classList.add("hidden");
+  };
+</script>
+
+</body>
+</html>
